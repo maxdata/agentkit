@@ -14,11 +14,70 @@
 | Spec document | ✅ Done |
 | Plan document | ✅ Done |
 | Writeup draft | ✅ Done |
-| **Core code** | ❌ Not started |
-| **API** | ❌ Not started |
-| **CLI** | ❌ Not started |
-| **Demo video** | ❌ Not started |
+| Core code | ✅ Done |
+| API | ✅ Done |
+| CLI | ✅ Done |
+| Demo video | ✅ Done (`demo.mp4`, `demo.gif`) |
 | **Kaggle submission** | ❌ Not started |
+
+**GitHub Repo:** https://github.com/maxdata/agentkit
+
+---
+
+## How the Demo Video Was Generated
+
+We used **VHS** (https://github.com/charmbracelet/vhs) - a tool that generates terminal GIFs and videos from a script.
+
+### Installation
+```bash
+brew install vhs ffmpeg ttyd
+```
+
+### The Tape File (`demo.tape`)
+VHS uses "tape" files that script terminal interactions:
+
+```tape
+# AgentKit Demo Video
+Output demo.mp4
+Output demo.gif
+
+Set FontSize 18
+Set Width 1200
+Set Height 800
+Set Theme "Catppuccin Mocha"
+
+Type "# AgentKit - Generate Backend Tools for AI Agents"
+Enter
+Sleep 2s
+
+Type "agentkit generate 'A bookmark manager with add, search, and tag operations'"
+Enter
+Sleep 15s
+
+Type "cat generated/*/agent_schemas/claude_tools.json | head -30"
+Enter
+Sleep 5s
+
+Type "# GitHub: https://github.com/maxdata/agentkit"
+Enter
+Sleep 3s
+```
+
+### Generate Video
+```bash
+cd /Users/max/Documents/GitHub/agentkit
+vhs demo.tape
+```
+
+This creates:
+- `demo.mp4` - Video file for YouTube/Kaggle
+- `demo.gif` - GIF for README/documentation
+
+### Why VHS?
+1. **Scriptable** - Reproducible demos
+2. **High quality** - Better than screen recording
+3. **Automatic** - No manual recording needed
+4. **Multiple outputs** - MP4 and GIF in one command
 
 ---
 
